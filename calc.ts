@@ -17,13 +17,19 @@ const buttonMultiply = document.getElementById("multiply") as HTMLButtonElement;
 const buttonDivide = document.getElementById("divide") as HTMLButtonElement;
 const buttonEquals = document.getElementById("equals") as HTMLButtonElement;
 const display = document.getElementById("display") as HTMLElement;
+const buttonClear = document.getElementById("clear") as HTMLButtonElement;
+const buttonClearAll = document.getElementById("clearAll") as HTMLButtonElement;
 
+//////////////////// Global Variables ////////////////////
+
+let value1: number | undefined;
+let value2: number | undefined;
+let operation: string | undefined;
 
 //////////////////// Putting the numbers into the display ////////////////////
 
 function concatNumToDisplay(appendedNumber: string) {
   const currentDisplay: string = display.innerText;
-  console.log(currentDisplay);
 
   if (currentDisplay === "0") {
     display.innerText = appendedNumber;
@@ -77,3 +83,74 @@ buttonDecimal.addEventListener("click", function () {
 });
 
 //////////////////// Clear Display ////////////////////
+
+function clear () {
+    display.innerText = "0"
+}
+
+buttonClear.addEventListener("click", function () {
+    clear();
+  });
+
+//////////////////// Clear All ////////////////////
+
+function clearAll () {
+    display.innerText = "0"
+    console.log (value1, value2, operation)
+    value1 = undefined
+    value2 = undefined
+    operation = undefined
+    console.log (value1, value2, operation)
+}
+
+buttonClearAll.addEventListener("click", function () {
+    clearAll();
+});
+
+//////////////////// Operations ////////////////////
+
+function setOperation (clickedOperation: string) {
+    operation = clickedOperation
+}
+
+// storeValue1 also updates value1 if the user is performing a second operation as opposed to hitting the equals button after inputing a second value. 
+
+function storeValue1 () {
+    if (value1 === 0 || value1 === undefined) {
+        value1 = +display.innerText
+    } else if (operation === "add"){
+        value1 += +display.innerText
+    } else if (operation === "subtract") {
+        value1 -= +display.innerText
+    } else if (operation === "multiply") {
+        value1 = value1 * +display.innerText
+    } else {
+        value1 = value1 / +display.innerText
+    }
+}
+
+buttonAdd.addEventListener ("click", function () {
+    setOperation(buttonAdd.value);
+    storeValue1();
+    clear();
+})
+
+buttonSubtract.addEventListener ("click", function () {
+    setOperation(buttonSubtract.value);
+    storeValue1();
+    clear();
+})
+
+buttonMultiply.addEventListener ("click", function () {
+    setOperation(buttonMultiply.value);
+    storeValue1();
+    clear();
+})
+
+buttonDivide.addEventListener ("click", function () {
+    setOperation(buttonDivide.value);
+    storeValue1();
+    clear();
+})
+
+//what's left - calculate and return the result upon hitting the equals button (ifs for if there is only a value 1 input)(clear value1 value2 and operator, but user can still use an operator from here to perform an opertation on the result of the previous calculation), make the subtract button make a negative symbol if there is no numbers input into the display yet, css styling
