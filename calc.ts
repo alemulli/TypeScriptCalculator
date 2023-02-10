@@ -327,4 +327,4 @@ document.addEventListener ("keydown", function(event){
  if (event.key === "Escape") {buttonClearAll.click()}
 })
 
-//what's left - css styling
+//what's left - css styling - rewriting keydown event listeners more efficiently with a map
