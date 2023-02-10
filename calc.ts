@@ -25,6 +25,7 @@ const buttonClearAll = document.getElementById("clearAll") as HTMLButtonElement;
 let value1: number | undefined;
 let value2: number | undefined;
 let operation: string | undefined;
+let solution: number | undefined;
 
 //////////////////// Putting the numbers into the display ////////////////////
 
@@ -166,6 +167,7 @@ function setOperation(clickedOperation: string) {
 
 // storeValue1 also updates value1 if the user is performing a second operation as opposed to hitting the equals button after inputing a second value.
 // this function also checks to see if they have tried to perform an operation on "-" with no number, if so it will return error
+// if the user tries to divide the stored value by 0 it returns error
 function storeValue1() {
   if (value1 === 0 || value1 === undefined) {
     value1 = +display.innerText;
@@ -176,7 +178,12 @@ function storeValue1() {
   } else if (operation === "multiply") {
     value1 = value1 * +display.innerText;
   } else {
-    value1 = value1 / +display.innerText;
+    if (display.innerText === "0") {
+      display.innerText = "ERROR";
+    } else {
+      value1 = value1 / +display.innerText;
+    }
+    
   }
 }
 
@@ -226,4 +233,42 @@ buttonDivide.addEventListener("click", function () {
   }
 });
 
-//what's left - calculate and return the result upon hitting the equals button (ifs for if there is only a value 1 input)(clear value1 value2 and operator, but user can still use an operator from here to perform an opertation on the result of the previous calculation),  css styling
+//////////////////// Equals ////////////////////
+
+function calculate (val1:number | undefined, val2:number | undefined, operation: string | undefined) {
+  if (operation === "add" && val1 !== undefined && val2 !== undefined) {
+    solution = val1 + val2
+  } else if (operation === "subtract"  && val1 !== undefined && val2 !== undefined) {
+    solution = val1 - val2
+  } else if (operation === "multiply"  && val1 !== undefined && val2 !== undefined) {
+    solution = val1 * val2
+  } else if (operation === "divide"  && val1 !== undefined && val2 !== undefined) {
+    if (val2 === 0) {
+      display.innerText = "ERROR"
+      return
+    } else {
+      solution = val1 / val2
+    }
+  } else {
+    solution = val1
+  }
+  if (solution) {
+    display.innerText = solution.toString()
+  }
+}
+
+function storeValue2() {
+    value2 = +display.innerText;
+}
+
+buttonEquals.addEventListener("click", function () {
+  storeValue2();
+  console.log(value1, value2, operation)
+  calculate(value1, value2, operation);
+  value1 = undefined;
+  value2 = undefined;
+  operation = undefined;
+})
+
+
+//what's left -  display that shows the most recent calculation, ability to press the numbers and operations on the keyboard rather than with the mouse,  css styling
