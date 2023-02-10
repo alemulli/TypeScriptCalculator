@@ -17,6 +17,7 @@ const buttonMultiply = document.getElementById("multiply") as HTMLButtonElement;
 const buttonDivide = document.getElementById("divide") as HTMLButtonElement;
 const buttonEquals = document.getElementById("equals") as HTMLButtonElement;
 const display = document.getElementById("display") as HTMLElement;
+const recentCalc = document.getElementById("recentCalc") as HTMLElement;
 const buttonClear = document.getElementById("clear") as HTMLButtonElement;
 const buttonClearAll = document.getElementById("clearAll") as HTMLButtonElement;
 
@@ -25,6 +26,7 @@ const buttonClearAll = document.getElementById("clearAll") as HTMLButtonElement;
 let value1: number | undefined;
 let value2: number | undefined;
 let operation: string | undefined;
+let operationSymbol: string | undefined
 let solution: number | undefined;
 
 //////////////////// Putting the numbers into the display ////////////////////
@@ -148,11 +150,11 @@ buttonClear.addEventListener("click", function () {
 
 function clearAll() {
   display.innerText = "0";
-  console.log(value1, value2, operation);
+  recentCalc.innerText = "";
   value1 = undefined;
   value2 = undefined;
   operation = undefined;
-  console.log(value1, value2, operation);
+  operationSymbol = undefined;
 }
 
 buttonClearAll.addEventListener("click", function () {
@@ -192,6 +194,7 @@ buttonAdd.addEventListener("click", function () {
     display.innerText = "ERROR";
   } else {
     setOperation(buttonAdd.value);
+    operationSymbol = "+"
     storeValue1();
     clear();
   }
@@ -207,6 +210,7 @@ buttonSubtract.addEventListener("click", function () {
       concatNumToDisplay("-");
     } else {
       setOperation(buttonSubtract.value);
+      operationSymbol = "-"
       storeValue1();
       clear();
     }
@@ -218,6 +222,7 @@ buttonMultiply.addEventListener("click", function () {
     display.innerText = "ERROR";
   } else {
     setOperation(buttonMultiply.value);
+    operationSymbol = "*"
     storeValue1();
     clear();
   }
@@ -228,6 +233,7 @@ buttonDivide.addEventListener("click", function () {
     display.innerText = "ERROR";
   } else {
     setOperation(buttonDivide.value);
+    operationSymbol = "÷"
     storeValue1();
     clear();
   }
@@ -263,12 +269,19 @@ function storeValue2() {
 
 buttonEquals.addEventListener("click", function () {
   storeValue2();
-  console.log(value1, value2, operation)
   calculate(value1, value2, operation);
+  if(value1 !== undefined && solution !== undefined){
+    if (value2 !==undefined){
+     recentCalc.innerText = value1.toString() + operationSymbol + value2.toString() + "=" + solution.toString()
+    } else {
+      recentCalc.innerText = value1.toString()  + "=" + solution.toString()
+    }
+  }
+ 
   value1 = undefined;
   value2 = undefined;
   operation = undefined;
 })
 
 
-//what's left -  display that shows the most recent calculation, ability to press the numbers and operations on the keyboard rather than with the mouse,  css styling
+//what's left - ability to press the numbers and operations on the keyboard rather than with the mouse,  css styling
