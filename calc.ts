@@ -304,35 +304,44 @@ buttonEquals.addEventListener("click", function () {
 
 //////////////////// Event Listeners for Keyboard Presses ////////////////////
 
-document.addEventListener ("keydown", function(event){
- if (event.key === "1") {button1.click()}
- if (event.key === "2") {button2.click()}
- if (event.key === "3") {button3.click()}
- if (event.key === "4") {button4.click()}
- if (event.key === "5") {button5.click()}
- if (event.key === "6") {button6.click()}
- if (event.key === "7") {button7.click()}
- if (event.key === "8") {button8.click()}
- if (event.key === "9") {button9.click()}
- if (event.key === "0") {button0.click()}
- if (event.key === ".") {buttonDecimal.click()}
- if (event.key === "+") {buttonAdd.click()}
- if (event.key === "-") {buttonSubtract.click()}
- if (event.key === "*") {buttonMultiply.click()}
- if (event.key === "/") {buttonDivide.click()}
- if (event.key === "=") {buttonEquals.click()}
- if (event.key === "Enter") {buttonEquals.click()}
- if (event.key === "Delete") {buttonClear.click()}
- if (event.key === "Backspace"){buttonClear.click()}
- if (event.key === "Escape") {buttonClearAll.click()}
-})
+// document.addEventListener ("keydown", function(event){
+//  if (event.key === "1") {button1.click()}
+//  if (event.key === "2") {button2.click()}
+//  if (event.key === "3") {button3.click()}
+//  if (event.key === "4") {button4.click()}
+//  if (event.key === "5") {button5.click()}
+//  if (event.key === "6") {button6.click()}
+//  if (event.key === "7") {button7.click()}
+//  if (event.key === "8") {button8.click()}
+//  if (event.key === "9") {button9.click()}
+//  if (event.key === "0") {button0.click()}
+//  if (event.key === ".") {buttonDecimal.click()}
+//  if (event.key === "+") {buttonAdd.click()}
+//  if (event.key === "-") {buttonSubtract.click()}
+//  if (event.key === "*") {buttonMultiply.click()}
+//  if (event.key === "/") {buttonDivide.click()}
+//  if (event.key === "=") {buttonEquals.click()}
+//  if (event.key === "Enter") {buttonEquals.click()}
+//  if (event.key === "Delete") {buttonClear.click()}
+//  if (event.key === "Backspace"){buttonClear.click()}
+//  if (event.key === "Escape") {buttonClearAll.click()}
+// })
 
 // Refactoring
 
-export interface ButtonMapping {
+// Type Definition
+interface ButtonMapping {
   [key: string]: HTMLButtonElement;
 } 
 
 const buttonsMap: ButtonMapping = {"1": button1, "2": button2, "3": button3, "4": button4, "5": button5, "6": button6, "7": button7, "8": button8, "9": button9, "0": button0, ".": buttonDecimal, "+": buttonAdd, "-": buttonSubtract, "*": buttonMultiply, "/": buttonDivide, "=": buttonEquals, "Enter": buttonEquals, "Delete": buttonClear, "Backspace": buttonClear, "Escape": buttonClearAll}
+
+for (const [keys,values] of Object.entries(buttonsMap)) {
+  document.addEventListener("keydown", function(event){
+    if (event.key === keys) {
+      values.click();
+    }
+  })
+}
 
 //what's left - css styling - rewriting keydown event listeners more efficiently with a map
