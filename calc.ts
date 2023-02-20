@@ -327,4 +327,12 @@ document.addEventListener ("keydown", function(event){
  if (event.key === "Escape") {buttonClearAll.click()}
 })
 
+// Refactoring
+
+export interface ButtonMapping {
+  [key: string]: HTMLButtonElement;
+} 
+
+const buttonsMap: ButtonMapping = {"1": button1, "2": button2, "3": button3, "4": button4, "5": button5, "6": button6, "7": button7, "8": button8, "9": button9, "0": button0, ".": buttonDecimal, "+": buttonAdd, "-": buttonSubtract, "*": buttonMultiply, "/": buttonDivide, "=": buttonEquals, "Enter": buttonEquals, "Delete": buttonClear, "Backspace": buttonClear, "Escape": buttonClearAll}
+
 //what's left - css styling - rewriting keydown event listeners more efficiently with a map
