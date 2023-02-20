@@ -344,4 +344,4 @@ for (const [keys,values] of Object.entries(buttonsMap)) {
   })
 }
 
-//what's left - css styling - rewriting keydown event listeners more efficiently with a map
+//what's left - css styling - refactoring code for efficiency
