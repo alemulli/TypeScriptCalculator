@@ -7,28 +7,34 @@
     <title>TypeScript Calculator</title>
     <script src="calc.js" defer></script>
 <!-- Stylesheets -->
+<link href="./dist/output.css" rel="stylesheet">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Monda&display=swap" rel="stylesheet">
 </head>
 <body>
+
     <div id = "fullDisplay"><div id="recentCalc"></div><div id="display">0</div></div>
-    <button id="1" class="number" value="1">1</button>
-    <button id="2" class="number" value="2">2</button>
-    <button id="3" class="number" value="3">3</button>
-    <button id="4" class="number" value="4">4</button>
-    <button id="5" class="number" value="5">5</button>
-    <button id="6" class="number" value="6">6</button>
+
+    <div class="grid gap-4 grid-cols-4 grid-rows-4">
     <button id="7" class="number" value="7">7</button>
     <button id="8" class="number" value="8">8</button>
     <button id="9" class="number" value="9">9</button>
+    <button id="divide" class="operation" value="divide">÷</button>
+    <button id="4" class="number" value="4">4</button>
+    <button id="5" class="number" value="5">5</button>
+    <button id="6" class="number" value="6">6</button>
+    <button id="multiply" class="operation" value="multiply">x</button>
+    <button id="1" class="number" value="1">1</button>
+    <button id="2" class="number" value="2">2</button>
+    <button id="3" class="number" value="3">3</button>
+    <button id="subtract" class="operation" value="subtract">-</button>
     <button id="0" class="number" value="0">0</button>
     <button id="decimal" class="number" value=".">.</button>
-    <button id="add" class="operation" value="add">+</button>
-    <button id="subtract" class="operation" value="subtract">-</button>
-    <button id="multiply" class="operation" value="multiply">x</button>
-    <button id="divide" class="operation" value="divide">÷</button>
     <button id="equals" class="operation" value="equals">=</button>
+    <button id="add" class="operation" value="add">+</button>
+    </div>
+    
     <button id="clear" class="clearFunction">Clear</button>
     <button id="clearAll" class="clearFunction">Clear All</button>
 </body>
