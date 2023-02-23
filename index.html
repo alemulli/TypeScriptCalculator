@@ -15,14 +15,14 @@
       rel="stylesheet"
     />
   </head>
-  <body class="h-screen w-screen flex justify-center items-center">
+  <body class="h-screen w-screen flex justify-center items-center text-white font-bold">
     <div
       id="calculator"
-      class="bg-zinc-100 w-max h-max p-10 flex flex-col items-center"
+      class="bg-zinc-100 rounded-xl shadow-2xl w-max h-max p-10 flex flex-col items-stretch"
     >
-      <div id="fullDisplay">
-        <div id="recentCalc"></div>
-        <div id="display">0</div>
+      <div id="fullDisplay" class="bg-zinc-800 mb-5 rounded-md flex flex-col grow-1 items-stretch w-5/5">
+        <div id="recentCalc" class="bg-stone-500 rounded-t-md h-7 ml-2 mr-2 mt-2 p-1 text-zinc-700"></div>
+        <div id="display" class="bg-stone-500 rounded-b-md h-7 ml-2 mr-2 mb-2 p-1 text-zinc-900" >0</div>
       </div>
       <div class="inline-grid gap-5 grid-cols-4 grid-rows-4">
         <button id="7" class="number" value="7">7</button>
@@ -42,7 +42,7 @@
         <button id="equals" class="operation" value="equals">=</button>
         <button id="add" class="operation" value="add">+</button>
       </div>
-      <div class="grid gap-5 grid-cols-2 grid-rows-1">
+      <div class="flex gap-5 justify-center">
         <button id="clear" class="clearFunction">Clear</button>
         <button id="clearAll" class="clearFunction">Clear All</button>
       </div>
